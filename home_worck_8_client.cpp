@@ -10,20 +10,20 @@ int main() {
 	HANDLE eventClient = CreateEventA(0, FALSE, FALSE, "eventClient");
 	HANDLE eventServer = CreateEventA(0, FALSE, FALSE, "eventServer");
 	
-	//запрос клиента
+	//Р·Р°РїСЂРѕСЃ РєР»РёРµРЅС‚Р°
 	SetEvent(eventClient);
 	
-	//ждем данных от сервера
+	//РїРµСЂРµРґР°С‡Р° РґР°РЅРЅС‹С… РѕС‚ СЃРµСЂРІРµСЂР° 
 	DWORD value_1 = WaitForSingleObject(eventServer, INFINITE);
 	
-	//чтение данных с файла
+	//РѕС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р° СЃ РґР°РЅРЅС‹РјРё
 	ifstream fin;
 	fin.open("data.txt");
 	
 	string str;
 	getline(fin, str);
 	
-	//вывод данных
+	//РІС‹РІРѕРґ РґР°РЅРЅС‹С… СЃ С„Р°Р№Р»Р°
 	cout << str << endl;
 	
 	fin.close();

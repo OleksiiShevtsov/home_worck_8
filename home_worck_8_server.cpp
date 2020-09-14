@@ -3,23 +3,23 @@
 #include <string>
 
 using namespace std;
-/*	CLIENT -> SERVER: */
+/* SERVER: */
 
 int main() {
 	
 	HANDLE eventClient = CreateEventA(0, FALSE, FALSE, "eventClient");
 	HANDLE eventServer = CreateEventA(0, FALSE, FALSE, "eventServer");
 	
-	//ждем сигнала от клиента
+	//РѕР¶РёРґР°РЅРµ Р·Р°РїСЂРѕСЃР° РѕС‚ РєР»РёРµРЅС‚Р°
 	WaitForSingleObject(eventClient, INFINITE);
 
-	//запись данных в файл
+	//РїРµСЂРµРґР°С‡Р° РґР°РЅРЅС‹С… РІ С„Р°Р№Р»
 	char DataBuffer[] = "text_data";
 	DWORD dwBytesToWrite = (DWORD)strlen(DataBuffer);
 	DWORD dwBytesWritten = 0;
 	BOOL bErrorFlag = FALSE;
 	
-	HANDLE hFileData = CreateFileA("E:\\programming\\C++\\System programming\\Junior\\8)Многоп. Ивент\\home_worck_8\\data.txt",
+	HANDLE hFileData = CreateFileA("E:\\programming\\C++\\System programming\\Junior\\8)ГЊГ­Г®ГЈГ®ГЇ. Г€ГўГҐГ­ГІ\\home_worck_8\\data.txt",
 		GENERIC_WRITE | GENERIC_READ,
 		0,
 		NULL,
@@ -36,7 +36,7 @@ int main() {
 		
 	CloseHandle(hFileData);
 	
-	//передача клиенту
+	//РїРµСЂРµРґР°С‡Р° РґР°РЅРЅС‹С… РєР»РёРµРЅС‚Сѓ
 	SetEvent(eventServer);
 	
 	cout << "EXIT ThreadServer" << endl;
